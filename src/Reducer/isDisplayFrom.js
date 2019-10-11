@@ -1,7 +1,7 @@
 import * as types from './../Constan/ActionType'
 var initializeState = false
 var myReducer = (state = initializeState, action) => {
-    switch (action.types) {
+    switch (action.type) {
         case types.TOGGLE_FROM:
             return !state
         case types.ON_OPEN:

@@ -24,4 +24,17 @@ export const toggle = () => {
     return {
         type: types.TOGGLE_FROM
     }
+};
+export const deleteTask =(id) => {
+    return {
+        type: types.DELETE_TASK,
+        id: id
+    }
+};
+export const updateFrom =(task)=>{
+    return{
+        type: types.UPDATE_FROM,
+        task: task
+    }
+    
 }

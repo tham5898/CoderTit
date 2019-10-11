@@ -6,8 +6,17 @@ import logo3 from './../img/i13.jpg';
 import logo4 from './../img/i14.jpeg';
 import logo5 from './../img/i15.jpg';
 import logo6 from './../img/i16.jpg';
-var data =JSON.parse(localStorage.getItem('task'));
-var initializeState =  data ? data :[
+var findIndex = (task, id) => {
+    var result = -1;
+    task.forEach((task, index) => {
+        if (task.id === id) {
+            result = index;
+        }
+    });
+    return result
+}
+var data = JSON.parse(localStorage.getItem('task'));
+var initializeState = data ? data : [
     {
         id: "0001",
         name: "SAMSUM",
@@ -68,7 +77,14 @@ const myReducer = (state = initializeState, action) => {
             }
             state.push(newTask)
             localStorage.setItem('task', JSON.stringify(state))
-            return [...state]
+            return [...state];
+        case actions.DELETE_TASK:
+            var id = action.id;
+            var index = findIndex(state, id);
+            state.splice(index, 1)
+            localStorage.setItem('task', JSON.stringify(state))
+            return [...state];
+            
         default: return [...state]
     }
 
